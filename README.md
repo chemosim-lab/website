@@ -1,7 +1,7 @@
 # website
 Database website 
 
-
+![alt text](http://url/to/img.png)
 
 accounts: the folder handle the login logout and registration
  Need to login to create an account for other user.
