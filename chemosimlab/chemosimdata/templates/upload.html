@@ -1,0 +1,59 @@
+<!-- templates/home.html -->
+{% extends 'base.html' %}
+
+
+{% block title %}Login{% endblock %}
+
+
+{% block content %}
+
+	
+
+ <!-- MENU SECTION END-->
+    <div class="content-wrapper">
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="page-head-line">Forms </h1>
+                    </div>
+            </div>
+            <div class="row">
+                
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                           BASIC  FORM ELEMENTS
+                           {% if test %}
+                                    {{test}}
+                           {%endif%}
+                        </div>
+                        <div class="panel-body">
+                            <form action="{% url 'upload' %}" method="POST" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label>Select Example</label>
+                                        <select class="form-control" name=database>
+                                            <option value=0>Ligand</option>
+                                            <option value=1>Rescepteur</option>
+                                            <option value=2>Donnees affinites litterature</option>
+                                            <option value=3>Mesures psychophysioloy</option>
+                                        </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputFile">File input</label>
+                                    <input type="file" name="csv_file" id="exampleInputFile" />
+                                    <p class="help-block">Example block-level help text here.</p>
+                                </div>
+                                      
+                                <button type="submit" class="btn btn-default">Submit</button>
+                                    
+                                    
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- CONTENT-WRAPPER SECTION END-->
+ {% endblock %}

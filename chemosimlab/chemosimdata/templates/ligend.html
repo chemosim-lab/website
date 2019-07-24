@@ -1,0 +1,100 @@
+<!-- templates/home.html -->
+{% extends 'base.html' %}
+
+
+{% block title %}Login{% endblock %}
+
+
+{% block content %}
+
+	
+
+ <!-- MENU SECTION END-->
+    <div class="content-wrapper">
+        <div class="container">
+          
+            <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="page-head-line">Ligend</h1>
+                    </div>
+            </div>
+            <div class="row">
+                <div class="col-md">
+                  <!--   Kitchen Sink -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Ligend
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Inchikey</th>
+                                            <th>Name</th>
+                                            <th>Smiles</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for lig in ligend %}
+                                        <tr>
+                                            <td>{{ lig.id }}</td>
+                                            <td>{{ lig.inchikey}}</td>
+                                            <td>{{ lig.name}}</td>
+                                            <td>{{ lig.smiles}}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                                {% if ligend.has_other_pages %}
+                                  <nav aria-label="Topics pagination" class="mb-4">
+                                    <ul class="pagination">
+                                      {% if ligend.has_previous %}
+                                        <li class="page-item">
+                                          <a class="page-link" href="?page={{ ligend.previous_page_number }}">Previous</a>
+                                        </li>
+                                      {% else %}
+                                        <li class="page-item disabled">
+                                          <span class="page-link">Previous</span>
+                                        </li>
+                                      {% endif %}
+
+                                      {% for page_num in ligend.paginator.page_range %}
+                                        {% if ligend.number == page_num %}
+                                          <li class="page-item active">
+                                            <span class="page-link">
+                                              {{ page_num }}
+                                              <span class="sr-only">(current)</span>
+                                            </span>
+                                          </li>
+                                        {% else %}
+                                          <li class="page-item">
+                                            <a class="page-link" href="?page={{ page_num }}">{{ page_num }}</a>
+                                          </li>
+                                        {% endif %}
+                                      {% endfor %}
+
+                                      {% if ligend.has_next %}
+                                        <li class="page-item">
+                                          <a class="page-link" href="?page={{ ligend.next_page_number }}">Next</a>
+                                        </li>
+                                      {% else %}
+                                        <li class="page-item disabled">
+                                          <span class="page-link">Next</span>
+                                        </li>
+                                      {% endif %}
+                                    </ul>
+                                  </nav>
+                                {% endif %}
+
+                            </div>
+                        </div>
+                    </div>
+                     <!-- End  Kitchen Sink -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- CONTENT-WRAPPER SECTION END-->
+ {% endblock %}
